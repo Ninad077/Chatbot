@@ -6,7 +6,7 @@ import numpy as np
 
 # Function to load and preprocess the data
 def load_data(file):
-    df = pd.read_csv(file,delimiter=";")
+    df = pd.read_csv(file, delimiter=";")
     return df
 
 # Function to process the input and get the most similar question
@@ -22,7 +22,7 @@ def get_most_similar_question(new_sentence, questions, answers, vectorizer, tfid
     return answers[most_similar_index], similarity_percentage
 
 # Function to generate response
-def AnswertheQuestion(new_sentence, questions, answers, vectorizer, tfidf_matrix):
+def answer_the_question(new_sentence, questions, answers, vectorizer, tfidf_matrix):
     most_similar_answer, similarity_percentage = get_most_similar_question(new_sentence, questions, answers, vectorizer, tfidf_matrix)
     if similarity_percentage > 70:
         response = {
@@ -54,7 +54,7 @@ def main():
         user_question = st.text_input("Ask your question here:")
         if st.button("Ask"):
             if user_question:
-                response = AnswertheQuestion(user_question, questions, answers, vectorizer, tfidf_matrix)
+                response = answer_the_question(user_question, questions, answers, vectorizer, tfidf_matrix)
                 st.write("Answer:", response['answer'])
 
 if __name__ == "__main__":
